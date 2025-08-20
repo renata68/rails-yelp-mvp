@@ -7,4 +7,23 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # Root path – kam se dostaneš po načtení
+  root "restaurants#index"
+   # List all restaurants, the visitor can se all the list
+  get "restaurants", to: "restaurants#index"
+
+  # Form to add a new restaurant
+  get "restaurants/new", to: "restaurants#new"
+
+  # Create a new restaurant
+  post "restaurants", to: "restaurants#create"
+
+  # Show details of a single restaurant (with its reviews)
+  get "restaurants/:id", to: "restaurants#show", as: :restaurant
+
+  # Form to add a new review for a restaurant
+  get "restaurants/:restaurant_id/reviews/new", to: "reviews#new", as: :new_restaurant_review
+
+  # Create a new review for a restaurant
+  post "restaurants/:restaurant_id/reviews", to: "reviews#create", as: :restaurant_reviews
 end
